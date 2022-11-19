@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "collude-api"
+version = "0.1.0"
+description = ""
+authors = ["Travis Aucoin <travisdevaucoin@gmail.com>"]
+readme = "README.md"
+packages = [{include = "collude_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^4.1.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
