@@ -19,6 +19,8 @@ ENV POETRY_HOME="/opt/poetry" \
     PYSETUP_PATH="/opt/pysetup" \
     VENV_PATH="/opt/pysetup/.venv"
 
+ENV APP_ROOT="/app"
+
 # prepend poetry and venv to path
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
@@ -51,14 +53,17 @@ COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 
 
 # Copying in our entrypoint
-COPY ./provision/docker/api/docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./provision/docker/api/bin/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
 WORKDIR $PYSETUP_PATH
 RUN poetry install --no-root
 
 # mountpoint for app code
-WORKDIR /app
+WORKDIR $APP_ROOT
 
 COPY . .
+
+EXPOSE 8000
+
 

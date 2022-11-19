@@ -13,6 +13,9 @@ psycopg = {extras = ["binary"], version = "^3.1.4"}
 psycopg2 = "^2.9.5"
 
 
+[tool.poetry.group.dev.dependencies]
+black = {version = "^22.10.0", allow-prereleases = true}
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

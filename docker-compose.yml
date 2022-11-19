@@ -7,14 +7,24 @@ services:
       target: development
     ports:
       - "8000:8000"
-    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - .env
+    command: provision/docker/api/bin/run-server.sh
+    depends_on:
+      "db":
+        condition: service_healthy
     volumes:
-      - .:/code
+      - .:/app
   db:
     image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 volumes:
   postgres_data:
