@@ -27,14 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-    ("admin", "admin@mysite.com"),
-)
-ADMIN_USERNAME = "admin"
-ADMIN_EMAIL = "admin@mysite.com"
-ADMIN_INITIAL_PASSWORD = "admin"  # To be changed after first login by admin
-
 
 # Application definition
 
@@ -84,8 +76,8 @@ WSGI_APPLICATION = "collude_api.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
+        "NAME": "collude_db",
+        "USER": "colludeadmin",
         "PASSWORD": "postgres",
         "HOST": "db",
         "PORT": 5432,

@@ -1,24 +1,10 @@
-.ONESHELL:
-reset-superuser: SHELL := python
-reset-superuser:
-	import os 
-	import django
-	from django.contrib.auth import get_user_model
+.DEFAULT_GOAL := help
 
-	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.develop")
-	django.setup()
+init-local:
+	bash bin/init-local.sh
 
-	User = get_user_model()
-	user = User.objects.filter(is_superuser=True).first()
+help:
+	@echo "init-local			- Initializes local env, builds containers, Refreshes data"
 
-	if user:
-		user.set_password("admin")
-		user.save()
-	else:
-		user = User.objects.create_superuser(
-			username="josuedjh",
-			first_name="Josue djh",
-			password="admin",
-		)
-
-	print(f"Superuser {user.username!r} with password `admin`")
+.PHONY:
+	init-local
