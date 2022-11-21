@@ -1,3 +1,12 @@
 {
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugin",
+        "pylint_django",
+        "--django-settings-module=django_project.settings"
+    ]
 }
